@@ -1,28 +1,29 @@
 pipeline {
     agent any
-    stages{
+    stages {
         stage('build'){
-            steps{
+            steps {
                 sh '''
-                    cd ./JenkingsTesting
-                    ./mvnw -DskipTests clean compile
+                        cd ./JenkingsTesting
+                        ./mvnw -DskipTests clean compile
                    '''
                  }
         }
 
-        stage('test'){
-            steps{
-                '''
-                cd JenkingsTesting
-                    ./mvnw test
-                '''
+        stage ('test') {
+            steps {
+               sh  '''
+                     cd JenkingsTesting
+                        ./mvnw test
+                    '''
             }
+        }
 
         stage('deliver') {
-            steps{
+            steps {
                 sh '''
-                 cd JenkingsTesting
-                    ./mvnw -DskipTests install
+                     cd JenkingsTesting
+                        ./mvnw -DskipTests install
 
                  '''
             }
@@ -32,4 +33,3 @@ pipeline {
     }
 
 
-}
