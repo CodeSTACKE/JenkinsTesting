@@ -4,7 +4,7 @@ pipeline {
         stage('build'){
             steps {
                 sh '''
-                        cd ./JenkingsTesting
+                        cd ./TestPipeline
                         ./mvnw -DskipTests clean compile
                    '''
                  }
@@ -13,7 +13,7 @@ pipeline {
         stage ('test') {
             steps {
                sh  '''
-                     cd JenkingsTesting
+                     cd TestPipeline
                         ./mvnw test
                     '''
             }
